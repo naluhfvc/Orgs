@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ProdutoItemBinding
 import br.com.alura.orgs.model.Produto
+import java.text.NumberFormat
+import java.util.*
 
 class ListaProdutosAdapter(
     private val context: Context,
@@ -20,13 +22,16 @@ class ListaProdutosAdapter(
     class ViewHolder(private val binding: ProdutoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun vincula(produto: Produto) {
+        fun bind(produto: Produto) {
             val nome = binding.produtoItemNome
             nome.text = produto.nome
+
             val descricao = binding.produtoItemDescricao
             descricao.text = produto.descricao
+
             val valor = binding.produtoItemValor
-            valor.text = produto.valor.toPlainString()
+            val formatador = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
+            valor.text = formatador.format(produto.valor)
         }
 
     }
@@ -39,7 +44,7 @@ class ListaProdutosAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val produto = produtos[position]
-        holder.vincula(produto)
+        holder.bind(produto)
     }
 
     override fun getItemCount(): Int = produtos.size
