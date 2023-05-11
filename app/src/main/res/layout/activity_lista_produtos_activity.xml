@@ -28,7 +28,7 @@
         android:contentDescription="Adicionar Novo Produto"
         android:focusable="true"
         android:text="Novo Produto"
-        app:icon="@drawable/ic_baseline_add_24"
+        app:icon="@drawable/ic_action_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
