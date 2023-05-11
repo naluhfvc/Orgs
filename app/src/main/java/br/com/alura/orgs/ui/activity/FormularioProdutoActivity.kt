@@ -30,7 +30,8 @@ class FormularioProdutoActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setView(bindingFormImagem.root)
                 .setPositiveButton("Confirmar") { _, _ ->
-
+                    val url = bindingFormImagem.formularioImagemUrl.text.toString()
+                    binding.activityFormularioProdutoImagem.load(url)
                 }
                 .setNegativeButton("Cancelar") { _, _ ->
 
