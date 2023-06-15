@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.dao.ProdutosDao
 import br.com.alura.orgs.databinding.ActivityFormularioProdutoBinding
 import br.com.alura.orgs.model.Produto
+import br.com.alura.orgs.ui.dialog.FormularioImagemDialog
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
@@ -25,7 +26,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
         configuraBotaoSalvar()
         configuraGif()
         binding.activityFormularioProdutoImagem.setOnClickListener {
-
+            FormularioImagemDialog(this).mostra(binding.activityFormularioProdutoImagem)
         }
     }
 
