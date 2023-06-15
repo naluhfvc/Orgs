@@ -8,26 +8,35 @@ import br.com.alura.orgs.extensions.tentaCarregarImagem
 
 class FormularioImagemDialog(private val context: Context) {
 
-    fun mostra(quandoImagemCarregada: (imagem: String) -> Unit) {
-        val binding = FormularioImagemBinding.inflate(LayoutInflater.from(context))
+    fun mostra(
+        imagemPadrao: String? = null,
+        quandoImagemCarregada: (imagem: String) -> Unit,
+    ) {
 
-        binding.formularioImagemBotaoCarregar.setOnClickListener {
-            val url = binding.formularioImagemUrl.text.toString()
-            binding.formularioImagemImageView.tentaCarregarImagem(url)
+        FormularioImagemBinding.inflate(LayoutInflater.from(context)).apply {
+            imagemPadrao?.let {
+                formularioImagemImageView.tentaCarregarImagem(it)
+                formularioImagemUrl.setText(it)
+            }
+            formularioImagemBotaoCarregar.setOnClickListener {
+                val url = formularioImagemUrl.text.toString()
+                formularioImagemImageView.tentaCarregarImagem(url)
+            }
+
+            AlertDialog.Builder(context)
+                .setView(root)
+                .setPositiveButton("Confirmar")
+                { _, _ ->
+                    val url = formularioImagemUrl.text.toString()
+                    quandoImagemCarregada(url)
+                }
+                .setNegativeButton("Cancelar")
+                { _, _ ->
+
+                }
+                .show()
         }
 
-        AlertDialog.Builder(context)
-            .setView(binding.root)
-            .setPositiveButton("Confirmar")
-            { _, _ ->
-                val url = binding.formularioImagemUrl.text.toString()
-                quandoImagemCarregada(url)
-            }
-            .setNegativeButton("Cancelar")
-            { _, _ ->
-
-            }
-            .show()
     }
 
 }
