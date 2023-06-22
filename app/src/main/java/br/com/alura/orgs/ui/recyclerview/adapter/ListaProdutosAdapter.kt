@@ -33,6 +33,7 @@ class ListaProdutosAdapter(
         }
 
         fun bind(produto: Produto) {
+            this.produto = produto
             val nome = binding.produtoItemNome
             nome.text = produto.nome
 
